@@ -1,14 +1,3 @@
-require 'rotuka/active_record/base'
-require 'rotuka/active_record/validations'
-require 'rotuka/active_record/urls_cleaner'
-
-ActiveRecord::Base.class_eval do
-  include Rotuka::ActiveRecord::Base
-  include Rotuka::ActiveRecord::Validations
-  include Rotuka::ActiveRecord::UrlsCleaner
-end
-
-ActiveRecord::Base.send(:extend, UrlsCleaner::ActMethods)
 class ActiveRecord::Errors
   @@default_error_messages = {
     :inclusion => "не в списке",

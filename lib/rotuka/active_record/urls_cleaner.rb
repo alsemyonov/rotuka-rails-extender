@@ -2,18 +2,22 @@ module Rotuka
   module ActiveRecord
     # Поддержка ЧПУ
     module UrlsCleaner
+      def self.included(base)
+        base.extend(ActMethods)
+      end
+      
       # Расширение ЧПУ для ActiveRecord::Base
-      module ClassMethods
+      module ActMethods
         # Добавляет к классу удобные методы для ЧПУ
         # Необходимо поле 'slug'
         def has_clean_urls
-          extend  Rotuka::ActiveRecord::UrlsCleaner::Methods
+          extend  Rotuka::ActiveRecord::UrlsCleaner::ClassMethods
           include Rotuka::ActiveRecord::UrlsCleaner::InstanceMethods
         end
       end
       
       # Методы класса, поддерживающего ЧПУ
-      module Methods
+      module ClassMethods
         # Производит поиск по ЧПУ
         def find_by_url(url)
           find :first, [
