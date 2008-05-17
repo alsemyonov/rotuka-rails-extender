@@ -5,10 +5,7 @@ module Rotuka
         base.extend(ClassMethods)
       end
 
-      module ClassMethods        def all(*args)
-          find(:all, *args)
-        end
-
+      module ClassMethods
         def [](id)
           find(id)
         end
