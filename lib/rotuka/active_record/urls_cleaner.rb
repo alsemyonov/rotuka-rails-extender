@@ -27,7 +27,7 @@ module Rotuka
           class_eval url_cleaner, __FILE__, __LINE__
           
           if modifiable
-            alias_method :"#{slug_field}", :url=
+            alias_method :url=, :"#{slug_field}="
           end
         end
       end
