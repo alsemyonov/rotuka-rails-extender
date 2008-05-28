@@ -24,11 +24,15 @@ module Rotuka
               #{slug_field} || id
             end
           end_src
-          class_eval url_cleaner, __FILE__, __LINE__
-          
+
           if modifiable
-            alias_method :url=, :"#{slug_field}="
+            url_cleaner << <<-end_src
+              def url=(new_url)
+                #{slug_field}= new_url
+              end
+            end_src
           end
+          class_eval url_cleaner, __FILE__, __LINE__
         end
       end
     end
